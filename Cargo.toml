@@ -1,0 +1,13 @@
+[package]
+name = "mj-dns-proxy"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.36.0", features = ["full"] }
+hickory-server = { version = "0.24.1", features = ["tokio-rustls"] }
+async-trait = "0.1.77"
+
+[dev-dependencies]
+tokio = { version = "1.36.0", features = ["full"] }
+hickory-resolver = { version = "0.24.1", features = ["tokio-rustls"] }
