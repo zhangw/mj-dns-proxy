@@ -19,9 +19,7 @@ use std::sync::Arc;
 use tokio::net::UdpSocket;
 use tokio::signal;
 use trust_dns_resolver::config::Protocol;
-use trust_dns_resolver::config::{
-    NameServerConfig, ResolverConfig, ResolverOpts,
-};
+use trust_dns_resolver::config::{NameServerConfig, ResolverConfig, ResolverOpts};
 use trust_dns_resolver::TokioAsyncResolver;
 
 #[derive(Deserialize)]
@@ -96,7 +94,11 @@ impl RequestHandler for Server {
                 .collect();
 
             let response = builder.build(header, records.iter(), &[], &[], &[]);
-            println!("Response injected returning: {:?} for request from {:?}", response, request.src());
+            println!(
+                "Response injected returning: {:?} for request from {:?}",
+                response,
+                request.src()
+            );
             response_handler.send_response(response).await.unwrap()
         } else {
             // Forward the request to the public DNS server
